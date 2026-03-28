@@ -1,11 +1,91 @@
-import React from 'react'
+// import React, { useState } from "react";
+import { Link } from "react-router";
+// import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
-  return (
-    <div>
-      Register
-    </div>
-  )
-}
+  // const navigate = useNavigate();
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-export default Register
+  // const {loading,handleRegister} = useAuth()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
+  // if (loading) {
+  //   return (
+  //     <main>
+  //       <h1>Loading.......</h1>
+  //     </main>
+  //   );
+  // }
+
+  return (
+    <main>
+      <div className="form-container">
+        <h1>Register</h1>
+
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username</label>
+            <input
+              // onChange={(e) => {
+              //   setUsername(e.target.value);
+              // }}
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter username"
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              // onChange={(e) => {
+              //   setEmail(e.target.value);
+              // }}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter email address"
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              // onChange={(e) => {
+              //   setPassword(e.target.value);
+              // }}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+            />
+          </div>
+
+          <button className="button primary-button">Register</button>
+        </form>
+
+        <p>
+          Already have an account? <Link to={"/login"}>Login</Link>{" "}
+        </p>
+      </div>
+    </main>
+  );
+};
+
+export default Register;
+// 4 layer architecure is follwed in react
+
+// 1. ui  (ui+ navigation)
+// =>components , =>pages
+// 2. hook
+//for managing state nd api layer ko handle krne ke liye custom hooks bna skte hai
+// =>hooks
+// 3.state //user ka jo data frontend pr jo dekhana ose manage krna basically data ko manage krna
+//frontend pr user ka data store krne ke liye
+// =>auth.context.jsx, zai.context.jsx
+// 4. api //how frontend will communicate with backend
+// => services/auth.api.js
