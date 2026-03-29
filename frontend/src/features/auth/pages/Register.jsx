@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {loading,handleRegister} = useAuth()
+  const { loading, handleRegister } = useAuth();
 
   const handleSubmit = async (e) => {
-    await handleRegister({ email, password, name: username });
     e.preventDefault();
+    console.log({ username, email, password });
+    const success = await handleRegister({ email, password, name: username });
+
+    if (success) {
+      navigate("/"); // or /login
+    }
   };
 
-  if (loading) {
-    return (
-      <main>
-        <h1>Loading.......</h1>
-      </main>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <main>
+  //       <h1>Loading.......</h1>
+  //     </main>
+  //   );
+  // }
 
   return (
     <main>
@@ -36,6 +42,7 @@ const Register = () => {
                 setUsername(e.target.value);
               }}
               type="text"
+              value={username}
               id="username"
               name="username"
               placeholder="Enter username"
@@ -48,6 +55,7 @@ const Register = () => {
                 setEmail(e.target.value);
               }}
               type="email"
+              value={email}
               id="email"
               name="email"
               placeholder="Enter email address"
@@ -59,6 +67,7 @@ const Register = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              value={password}
               type="password"
               id="password"
               name="password"
