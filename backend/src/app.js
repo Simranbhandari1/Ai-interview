@@ -2,8 +2,13 @@ const express = require('express');
 
 const cookieParser = require('cookie-parser');
 const app= express()//initiate server creating instance 
+const cors = require("cors");
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin: "http://localhost:5173", // ✅ your frontend
+    credentials: true,
+}));
 //require all the routes here
 const authRouter=require('./routes/auth.routes')
 
