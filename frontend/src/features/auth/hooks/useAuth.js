@@ -40,14 +40,18 @@ export const useAuth = () => {
             setLoading(false)
         }
     }
-//       useEffect(() => {
-//     const getAndSetUser = async () => {
-//       const data = await getMe();
-//       setUser(data.user);
-//       setLoading(false);
-//     };
-//     getAndSetUser();
-//   }, []);
+      useEffect(() => {
+    const getAndSetUser = async () => {
+        try{
+      const data = await getMe();
+      setUser(data.user);
+    } catch (error) {
+        console.error('Failed to fetch current user:', error);} finally {       
+      setLoading(false);
+        }
+    };
+    getAndSetUser()
+  }, [])
 return{user, loading, handleLogin, handleRegister, handleLogout}
     // const fetchCurrentUser = async () => {
     //     setLoading(true)
