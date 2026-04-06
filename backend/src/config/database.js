@@ -1,8 +1,8 @@
-const moongose=require('mongoose')
+const mongoose=require('mongoose')
 
 async function connectToDB(){
-   try{ await moongose.connect(process.env.MongoDB_URI)
-    console.log("connected to datbase")
+   try{ await mongoose.connect(process.env.MongoDB_URI)
+    console.log("connected to database")
 }
     catch (error) {
         console.error("Error connecting to database:", error);
