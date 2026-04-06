@@ -33,9 +33,9 @@ const user = await userModel.create({
     password:hash
 })
 
-const token=jwt.sign({id: user._id , username: user.username},process.env.JWT_SECRET,{expiresIn:'1d'})
+const token=jwt.sign({id: user._id , username: user.username},
+process.env.JWT_SECRET,{expiresIn:'1d'})
 res.cookie("token",token)
-res.status(201).json({ message: "User registered successfully" });
     res.status(201).json({ message: "User registered successfully",
         user: {
             id: user._id,
@@ -59,7 +59,7 @@ async function loginUserController(req, res) {
     const {email,password}=req.body
     console.log("req" ,req.body)
     const user = await userModel.findOne({email})
-    console.log("user" , user)
+    console.log("user", user)
     if(!user){
       console.log("User not found with email:", email);
         return res.status(400).json({message:"Invalid credentials"})
