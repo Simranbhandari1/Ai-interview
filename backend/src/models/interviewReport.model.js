@@ -1,4 +1,4 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 /**
  * -job description schema
@@ -120,6 +120,10 @@ const interviewReportSchema = new mongoose.Schema(
     behavioralQuestionSchema: [behavioralQuestionSchema],
     skillGaps: [skillGapSchema],
     preparationPlan: [preparationPlanSchema],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', //users
+    },
   },
   {
     timestamps: true,
